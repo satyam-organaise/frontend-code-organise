@@ -102,11 +102,9 @@ const CircularProgressBar = () => {
 
     return (
         <>
-
             <HighchartsReact
                 highcharts={Highcharts}
                 options={totalData()}
-
             />
         </>
     )
