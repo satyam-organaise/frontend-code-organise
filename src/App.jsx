@@ -7,7 +7,6 @@ import Data from './pages/Data';
 
 
 function App() {
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -15,11 +14,12 @@ function App() {
       },
       secondary: {
         main: '#FF5353',
-      },
+      }
     },
     typography: {
-      fontFamily: 'Nunito'
+      fontFamily: 'Nunito',
     },
+    
   });
 
   return (
