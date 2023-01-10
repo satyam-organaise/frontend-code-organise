@@ -144,6 +144,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const LeftSideBar = (props) => {
+    console.log(props);
     const theme = useTheme();
     const navegate = useNavigate();
     const [open, setOpen] = React.useState(true);
@@ -206,12 +207,19 @@ const LeftSideBar = (props) => {
                         {props.data.pageName}
                     </Typography>
                     <Box sx={{ flexGrow: 0, width: "60%" }} display="inline-flex"
-                     justifyContent={props.data.pageName === "Data" ?'space-between' : "end"}
-                        >
+                        justifyContent={props.data.pageName === "Data" ? 'space-between' : "end"}
+                    >
                         {props.data.pageName === "Data" &&
                             <Box id="file_upload_icon">
-                                <Button variant="contained"
-                                    sx={{ backgroundColor: "#03CF80", color: "#ffffff", textTransform: "none" }}>
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        backgroundColor: "#03CF80",
+                                        color: "#ffffff",
+                                        textTransform: "none"
+                                    }}
+                                    onClick={() => props.setOpen(true)}
+                                >
                                     Upload Data
                                 </Button>
                             </Box>

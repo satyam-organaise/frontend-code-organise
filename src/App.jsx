@@ -11,31 +11,34 @@ function App() {
     palette: {
       primary: {
         main: '#5454d3',
-        
+
       },
       secondary: {
         main: '#FF5353',
-        dark:"#333333",
+        dark: "#333333",
       }
     },
     typography: {
       fontFamily: 'Nunito',
-      color:"#333333",
-      fontWeight:"600"
+      color: "#333333",
+      fontWeight: "600"
     },
-    
+
   });
 
   return (
     <>
       <ThemeProvider theme={theme}>
+        {/* <Dashboard /> */}
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Data />} />
           <Route path="/data" element={<Data />} />
           <Route path="/message" element={<Message />} />
           <Route path="/folder" element={<Folder />} />
+          <Route path="/priva" element={<Folder />} />
+          <Route path="/folder" element={<Folder />} />
           <Route path="*" element={<>404 page</>} />
-         
+
 
         </Routes>
       </ThemeProvider>
