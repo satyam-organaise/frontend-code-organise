@@ -176,12 +176,12 @@ const LeftSideBar = (props) => {
 
     const changePage = (indexVal) => {
         let pagesArray = ['dashboard', 'message', 'folder', 'data', 'privacy-policy', 'settings'];
-        if(indexVal  === 0 ){
+        if (indexVal === 0) {
             navegate(`/`);
-        }else{
+        } else {
             navegate(`/${pagesArray[indexVal]}`);
         }
-       
+
     }
 
 
@@ -285,7 +285,12 @@ const LeftSideBar = (props) => {
 
             >
                 <DrawerHeader >
-                    <Grid container display="flex" justifyContent="center" sx={{ transform: "translateX(-18px)" }}>
+                    <Grid
+                        container
+                        display="flex"
+                        justifyContent="center"
+                        sx={{ transform: "translateX(-18px)" }}
+                    >
                         {open &&
                             <IconButton onClick={handleDrawerClose} sx={{ padding: "12px" }}>
                                 {theme.direction === 'rtl' ?
@@ -298,7 +303,9 @@ const LeftSideBar = (props) => {
 
                         {open && <Typography
                             variant="subtitle1"
-                            sx={{ fontWeight: "bold", fontSize: "18px", lineHeight: 2.75 }} color="primary">Organize</Typography>}
+                            sx={{ fontWeight: "bold", fontSize: "18px", lineHeight: 2.75 }}
+                            color="primary">Organize</Typography>
+                        }
                     </Grid>
                 </DrawerHeader>
                 <Divider />
@@ -354,12 +361,13 @@ const LeftSideBar = (props) => {
                 </List>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                <>
+                {/* <DrawerHeader /> */}
+                <Box mt={5.5}>
+                    
                     {
                         props.children
                     }
-                </>
+                </Box>
             </Box>
         </Box>
     )
