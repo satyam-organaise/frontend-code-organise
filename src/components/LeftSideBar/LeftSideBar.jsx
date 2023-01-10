@@ -144,7 +144,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const LeftSideBar = (props) => {
-    console.log(props);
     const theme = useTheme();
     const navegate = useNavigate();
     const [open, setOpen] = React.useState(true);
@@ -177,7 +176,12 @@ const LeftSideBar = (props) => {
 
     const changePage = (indexVal) => {
         let pagesArray = ['dashboard', 'message', 'folder', 'data', 'privacy-policy', 'settings'];
-        navegate(`/${pagesArray[indexVal]}`);
+        if(indexVal  === 0 ){
+            navegate(`/`);
+        }else{
+            navegate(`/${pagesArray[indexVal]}`);
+        }
+       
     }
 
 

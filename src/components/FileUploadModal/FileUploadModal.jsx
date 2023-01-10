@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-const FileUploadModal = ({ handleClose, open, setJsonData }) => {
+const FileUploadModal = ({ handleClose, open, setJsonData, handleClickOpen }) => {
     const [fileGet, setFile] = useState();
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('xs');
@@ -40,12 +40,11 @@ const FileUploadModal = ({ handleClose, open, setJsonData }) => {
         <>
             <Dialog
                 open={open}
-                onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
-                onBackdropClick="false"
+                disableEscapeKeyDown={true}
             >
                 <DialogTitle id="alert-dialog-title">
                     <Box display={"flex"} justifyContent="space-between">
@@ -72,7 +71,7 @@ const FileUploadModal = ({ handleClose, open, setJsonData }) => {
 
                     </div>
                     <Box mt={3} sx={{ display: "flex", justifyContent: "center" }}>
-                        <Button   sx={{ paddingLeft:"50px",paddingRight:'50px',backgroundColor:"#03CF80" , textTransform:"capitalize"}} size='large' variant='contained' onClick={handleClose}>Upload Now</Button>
+                        <Button sx={{ paddingLeft: "50px", paddingRight: '50px', backgroundColor: "#03CF80", textTransform: "capitalize" }} size='large' variant='contained' onClick={handleClose}>Upload Now</Button>
                     </Box>
                 </DialogContent>
                 <DialogActions>

@@ -1,21 +1,23 @@
 import { Button, TextField, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import FileUploadModal from '../components/FileUploadModal/FileUploadModal';
+import LeftSideBar from '../components/LeftSideBar/LeftSideBar'
+import Typography from '@mui/material/Typography'
+
+
+//Index prop defiend by according to this array
+//['dashboard', 'message', 'folder', 'data', 'privacy-policy', 'settings'];
+
 
 const Dashboard = () => {
     const [open, setOpen] = useState(false);
     const [jsonData, setJsonData] = useState([]);
     const [textValue, setTextValue] = useState("");
-    const [filterDataCreate , setFilterDataCreate] = useState([]);
+    const [filterDataCreate, setFilterDataCreate] = useState([]);
     const handleClickOpen = () => {
         setOpen(true);
     };
-    
-    const srcVar1 = "Find order_id  00048cc3ae777c65dbb7d2a0634bc1ea";
-    const srcVar2 = "Find {order_item_id } {value}";
-    const srcVar3 = "Find {order_item_id } {value}";
-    const srcVar4 = "Find {order_item_id } {value}";
-   
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -44,37 +46,37 @@ const Dashboard = () => {
             let ColVal = splitText[1];
             let dataFilter = jsonData.filter((fd, indexVal) => indexVal !== 0 && fd.includes(ColVal));
             console.log(ColVal, dataFilter);
-            setFilterDataCreate([jsonData[0] , ...dataFilter])
+            setFilterDataCreate([jsonData[0], ...dataFilter])
         }
 
         let splitStr2 = inputVal.trim().replace(/\s+/g, ' ').split("less than");
         if (jsonData[0].includes(splitStr2[0].trim()) && splitStr2.length === 2) {
             let colIndex = jsonData[0].findIndex((a) => a === splitStr2[0].trim());
             let filterData = jsonData.filter((p) => p[colIndex] < Number(splitStr2[1].trim()));
-            console.log(colIndex , filterData , "less")
-            setFilterDataCreate([jsonData[0] , ...filterData])
+            console.log(colIndex, filterData, "less")
+            setFilterDataCreate([jsonData[0], ...filterData])
         }
 
         let splitStr3 = inputVal.trim().replace(/\s+/g, ' ').split("greater than");
         if (jsonData[0].includes(splitStr3[0].trim()) && splitStr3.length === 2) {
             let colIndex = jsonData[0].findIndex((a) => a === splitStr3[0].trim());
             let filterData = jsonData.filter((p) => p[colIndex] > Number(splitStr3[1].trim()));
-            console.log(colIndex , filterData , "greater")
-            setFilterDataCreate([jsonData[0] , ...filterData])
+            console.log(colIndex, filterData, "greater")
+            setFilterDataCreate([jsonData[0], ...filterData])
         }
 
         let splitStr4 = inputVal.trim().replace(/\s+/g, ' ').split("equal to");
         if (jsonData[0].includes(splitStr4[0].trim()) && splitStr4.length === 2) {
             let colIndex = jsonData[0].findIndex((a) => a === splitStr4[0].trim());
             let filterData = jsonData.filter((p) => p[colIndex] == Number(splitStr4[1].trim()));
-            console.log(colIndex , filterData , "equal",Number(splitStr4[1].trim()));
-            setFilterDataCreate([jsonData[0] , ...filterData])
+            console.log(colIndex, filterData, "equal", Number(splitStr4[1].trim()));
+            setFilterDataCreate([jsonData[0], ...filterData])
         }
     }
 
     return (
         <>
-            <div>Dashboard</div>
+            {/* <div>Dashboard</div>
             <Button variant="outlined" onClick={handleClickOpen}>
                 Open alert dialog
             </Button>
@@ -144,7 +146,10 @@ const Dashboard = () => {
                     </>
                 ))
                 }
-            </table>
+            </table> */}
+            <LeftSideBar data={{pageName:"Dashboard",index: 0 }}>
+                <Typography variant="h1" color="secondary.dark">DashBoard</Typography>
+            </LeftSideBar>
         </>
     )
 }

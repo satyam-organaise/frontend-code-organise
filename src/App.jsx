@@ -6,6 +6,10 @@ import Dashboard from './pages/Dashboard';
 import Data from './pages/Data';
 import Folder from './pages/Folder';
 import Message from './pages/Message';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Setting from './pages/Setting';
+
+
 function App() {
   const theme = createTheme({
     palette: {
@@ -29,14 +33,13 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* <Dashboard /> */}
         <Routes>
-          <Route path="/" element={<Data />} />
+          <Route path="/" element={<Dashboard /> } />
           <Route path="/data" element={<Data />} />
           <Route path="/message" element={<Message />} />
           <Route path="/folder" element={<Folder />} />
-          <Route path="/priva" element={<Folder />} />
-          <Route path="/folder" element={<Folder />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/settings" element={<Setting />} />
           <Route path="*" element={<>404 page</>} />
 
 
