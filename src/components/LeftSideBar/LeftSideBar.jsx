@@ -216,7 +216,7 @@ const LeftSideBar = (props) => {
                             <MenuIcon />
                         </IconButton>
                     }
-                    <Typography width={"100%"} variant="h6" color="#333333" noWrap component="div">
+                    <Typography width={"45%"} variant="h6" color="#333333" noWrap component="div">
                         {props.data.pageName}
                     </Typography>
                     <Box sx={{ flexGrow: 0, width: "60%" }} display="inline-flex"
