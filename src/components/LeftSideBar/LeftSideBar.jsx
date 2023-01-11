@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import {
     Box, Toolbar, List, ListItem, ListItemButton, ListItemIcon, InputBase,
@@ -150,6 +150,12 @@ const LeftSideBar = (props) => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    
+    useEffect(()=>{
+        if(props?.data?.pageName === "Folder"){
+            setOpen(!open);
+        }
+    },[props.data])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -179,6 +185,9 @@ const LeftSideBar = (props) => {
         if (indexVal === 0) {
             navegate(`/`);
         } else {
+            if(indexVal ===  2){
+                setOpen(!open);
+            }
             navegate(`/${pagesArray[indexVal]}`);
         }
 
@@ -207,7 +216,7 @@ const LeftSideBar = (props) => {
                             <MenuIcon />
                         </IconButton>
                     }
-                    <Typography variant="h6" color="#333333" noWrap component="div">
+                    <Typography width={"100%"} variant="h6" color="#333333" noWrap component="div">
                         {props.data.pageName}
                     </Typography>
                     <Box sx={{ flexGrow: 0, width: "60%" }} display="inline-flex"
@@ -281,8 +290,7 @@ const LeftSideBar = (props) => {
             <Drawer
                 variant="permanent"
                 open={open}
-                transitionDuration={10000}
-
+               
             >
                 <DrawerHeader >
                     <Grid
@@ -326,11 +334,11 @@ const LeftSideBar = (props) => {
                                         border: open && index === props.data.index ? "1px solid #5454D3" : "none",
                                         borderRadius: open ? "25px" : "10px",
                                         marginTop: "15px",
-                                        backgroundColor: open && index === props.data.index ? "#5454D4" : "#fff",
-                                        color: open && index === props.data.index ? "#ffffff" : "#333333",
+                                        backgroundColor: (open && index === props.data.index )? "#5454D4" : index === props.data.index ?  "#5454D4"  :  "#fff",
+                                        color: (open && index === props.data.index) ? "#ffffff" :  index === props.data.index ? "#ffffff" : "#333333",
                                         opacity: open && index !== props.data.index ? 0.7 : 1,
                                         "&:hover": {
-                                            backgroundColor: open && index === props.data.index ? "#5454D4" : "#fff",
+                                            backgroundColor: (open && index === props.data.index) ? "#5454D4" :  index === props.data.index  ? "#5454D3" : "#fff",
 
                                         },
                                         boxShadow: open && index === props.data.index ? "0px 0px 10px 10px rgba(0, 0, 0, 0.15)" : "none",
@@ -342,7 +350,7 @@ const LeftSideBar = (props) => {
                                             minWidth: 0,
                                             mr: open ? 1 : 'auto',
                                             justifyContent: 'center',
-                                            color: open && index === props.data.index ? "#ffffff" : "#333333",
+                                            color: (open && index === props.data.index) ? "#ffffff" :  index === props.data.index ? "#ffffff" : "#333333",
 
                                         }}
                                     >
