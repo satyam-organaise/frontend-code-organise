@@ -312,7 +312,7 @@ const LeftSideBar = (props) => {
                         {open && <Typography
                             variant="subtitle1"
                             sx={{ fontWeight: "bold", fontSize: "18px", lineHeight: 2.75 }}
-                            color="primary">Organize</Typography>
+                            color="primary">Organaise</Typography>
                         }
                     </Grid>
                 </DrawerHeader>
