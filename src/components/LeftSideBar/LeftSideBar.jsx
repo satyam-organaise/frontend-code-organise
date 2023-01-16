@@ -321,7 +321,8 @@ const LeftSideBar = (props) => {
                     paddingLeft: open ? "25px" : "5px",
                     paddingRight: open ? "25px" : "5px"
                 }}>
-                    {['Dashboard', 'Messaging', 'Folders', 'Data', 'Privacy Policy', 'Settings'].map(
+                    {/* ['Dashboard', 'Messaging', 'Folders', 'Data', 'Privacy Policy', 'Settings'] */}
+                    {['Dashboard', 'Messaging', 'Folders', 'Data'].map(
                         (text, index) => (
                             <ListItem key={text} disablePadding px="auto" sx={{ display: 'block' }}>
                                 <ListItemButton

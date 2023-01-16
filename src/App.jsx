@@ -38,8 +38,8 @@ function App() {
           <Route path="/data" element={<Data />} />
           <Route path="/message" element={<Message />} />
           <Route path="/folder" element={<Folder />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/settings" element={<Setting />} />
+          {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/settings" element={<Setting />} /> */}
           <Route path="*" element={<>404 page</>} />
 
 
