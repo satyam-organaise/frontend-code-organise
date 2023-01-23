@@ -8,7 +8,9 @@ import Folder from './pages/Folder';
 import Message from './pages/Message';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Setting from './pages/Setting';
-
+import Login from "./pages/Login";
+import ForgetPassword from './pages/ForgetPassword';
+import SignUp from './pages/signup';
 
 function App() {
   const theme = createTheme({
@@ -34,15 +36,16 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<Dashboard /> } />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/data" element={<Data />} />
           <Route path="/message" element={<Message />} />
           <Route path="/folder" element={<Folder />} />
           {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/settings" element={<Setting />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="*" element={<>404 page</>} />
-
-
         </Routes>
       </ThemeProvider>
 
