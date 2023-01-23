@@ -4,12 +4,47 @@ import { Link } from 'react-router-dom'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-
-
+import { useState } from 'react';
+import { CognitoSignUp, SignUpOtpVarify } from "../api/CognitoApi/CognitoApi";
+import { useMutation } from "react-query";
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    ///////// Api call by react query
+    const { mutateAsync: SignUpFunCall, isLoading: isLoadingSignUpFun } = useMutation(CognitoSignUp);
+    const { mutateAsync: SignUpOtpVerification, isLoading: isLoadingSignUpOtp } = useMutation(SignUpOtpVarify);
+
+    ////////// when click on the sign up button
+    const createAccount = async () => {
+        const userName = email.split('@')[0];
+        const userEmail = email;
+        const userPassword = password;
+        const response = await SignUpFunCall({ username: userName, email: userEmail, password: userPassword })
+        console.log(response, "response");
+        if (response.status && response.data.userSub) {
+            toast.info("Please check your inbox");
+            const GetOtpPrompt = prompt("Please enter otp.");
+            if (GetOtpPrompt !== null) {
+                const otpResponse = await SignUpOtpVerification({ username: userName, userOtp: GetOtpPrompt });
+                if (otpResponse.status) {
+                    toast.success("Opt varifyed successfullly");
+                } else {
+                    toast.error(response.error.message);
+                }
+            } else {
+                toast.error("Your account not varifyed.")
+            }
+        } else {
+            toast.error(response.error.message);
+        }
+    }
+
+
     return (
         <>
             <Box width={"100%"} height="60px" bgcolor={"#3370FD"}>
@@ -38,14 +73,19 @@ const SignUp = () => {
                                 size='small'
                                 sx={{ width: "100%", backgroundColor: "#ffffff", borderRadius: "0px" }}
                                 id="Email_address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <Typography variant="body2" mt={2} mb={.5} sx={{ color: "#ffffff" }} >Password</Typography>
                             <TextField
                                 size='small'
                                 sx={{ width: "100%", backgroundColor: "#ffffff", borderRadius: "0px" }}
                                 id="Password"
+                                type={"password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
-                            <Box display={"inlinne-flex"}>
+                            <Box id="my_dob_box" display={"inlinne-flex"}>
                                 <Box id="dob_box" width={"50%"}>
                                     <Box display={"flex"} justifyContent="space-between">
                                         <Typography variant="body2" mt={2} mb={.5} sx={{ color: "#ffffff" }} >Birth year</Typography>
@@ -78,7 +118,7 @@ const SignUp = () => {
                                     />
                                 </Box>
                             </Box>
-                            <Box display={"inlinne-flex"}>
+                            <Box id="my_gender_box" display={"inlinne-flex"}>
                                 <Box id="gender_box" width={"100%"}>
                                     <Box display={"flex"} justifyContent="space-between">
                                         <Typography variant="body2" mt={2} mb={.5} sx={{ color: "#ffffff" }} >Birth year</Typography>
@@ -145,6 +185,8 @@ const SignUp = () => {
                                 variant='contained'
                                 size='small'
                                 sx={{ width: "100%", marginTop: "24px" }}
+                                onClick={() => createAccount()}
+                                disabled={isLoadingSignUpFun}
                             >
                                 Sign Up
                             </Button>

@@ -11,6 +11,11 @@ import Setting from './pages/Setting';
 import Login from "./pages/Login";
 import ForgetPassword from './pages/ForgetPassword';
 import SignUp from './pages/signup';
+import { useEffect } from 'react';
+import { getAwsCredentialsFromCognito } from "./api/CognitoApi/CognitoApi";
+import { Auth } from "@aws-amplify/auth";
+
+import configureAmplify from './services/servicesConfig';/////////// Here we are configure the authication of server
 
 function App() {
   const theme = createTheme({
@@ -31,6 +36,11 @@ function App() {
     },
 
   });
+
+  useEffect(() => {
+    configureAmplify();
+    getAwsCredentialsFromCognito();
+  }, [])
 
   return (
     <>
